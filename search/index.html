@@ -18,13 +18,14 @@ var _hmt = _hmt || [];
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="我就是一名失败人士">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Datai&#39;s Blog">
-<meta property="og:url" content="http://whoami.ink/index.html">
+<meta property="og:title" content="search">
+<meta property="og:url" content="http://whoami.ink/search/index.html">
 <meta property="og:site_name" content="Datai&#39;s Blog">
 <meta property="og:description" content="我就是一名失败人士">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-11T12:53:36.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Datai&#39;s Blog">
+<meta name="twitter:title" content="search">
 <meta name="twitter:description" content="我就是一名失败人士">
     
     
@@ -45,7 +46,7 @@ var _hmt = _hmt || [];
         
     
     <!-- title -->
-    <title>Datai&#39;s Blog</title>
+    <title>search</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -120,104 +121,21 @@ var _hmt = _hmt || [];
 </header>
 
         
-        <section id="about">
-  
-    <p>我就是一名失败人士</p>
-
-  
-  
-    <p>
-      Find me on
-      
-      
-      
-        
-          <a class="icon" target="_blank" href="https://github.com/1046767760">
-            <i class="fab fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    --->, 
-        
-      
-        
-          <a class="icon" target="_blank" href="/">
-            <i class="fab fa-twitter"></i><!--
-      ---></a><!--
-    ---><!--
-    --->, 
-        
-      
-        
-          <a class="icon" target="_blank" href="/">
-            <i class="fab fa-facebook"></i><!--
-      ---></a><!--
-    ---><!--
-    --->, 
-        
-      
-        
-          <a class="icon" target="_blank" href="/">
-            <i class="fab fa-linkedin"></i><!--
-      ---></a><!--
-    ---><!--
-    ---> and 
-        
-      
-        
-          <a class="icon" target="_blank" href="mailto:1046767760@qq.com">
-            <i class="fas fa-envelope"></i><!--
-      ---></a><!--
-      ---><!--
-    --->.
-        
-      
-    </p>
-  
+        <section id="search">
+    <span class="h1"><a href="#">Search</a></span>
+    <form>
+        <div class="row">
+            <div class="col-xs-8 col-md-4">
+                <input type="text" class="search-input" id="search-input" placeholder="search...">
+            </div>
+            <div class="col-xs-4 col-md-2">
+                <button type="reset" class="reset-button" onclick="resetSearch()">reset</button>
+            </div>
+        </div>
+        </form>
+        <div id="search-result"></div>
+        <p class="no-result">No results found</p>
 </section>
-
-<section id="writing">
-  <span class="h1"><a href="/archives">文章</a></span>
-  <ul class="post-list">
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-        <time datetime="2017-06-14T04:32:35.000Z" itemprop="datePublished">2017-06-14</time>
-    </div>
-
-
-        <span>
-    
-        <a class href="/2017/06/14/Python基础学习笔记(一)/">Python基础学习笔记(一)</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
-  
-</section>
-
-
-<section id="projects">
-  <span class="h1"><a href="http://github.com/probberechts">项目</a></span>
-  <ul class="project-list">
-    
-      <li class="project-item">
-        <a href="https://hexo.io/">Hexo</a>: A fast, simple &amp; powerful blog framework
-      </li>
-    
-      <li class="project-item">
-        <a href="http://fontawesome.io/">Font Awesome</a>: The iconic font and CSS toolkit
-      </li>
-    
-  </ul>
-</section>
-
 
     </div>
     
@@ -253,12 +171,16 @@ var _hmt = _hmt || [];
 <link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+<link href="https://cdn.bootcss.com/flexboxgrid/6.3.1/flexboxgrid.min.css" rel="stylesheet">
+
 
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 <script src="/js/main.js"></script>
 <!-- search -->
+
+    <script src="/js/search.js"></script>
 
 
 <!-- Google Analytics -->
