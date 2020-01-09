@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>神经网络异或（XOR）</title>
+      <link href="/2020/01/10/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%BC%82%E6%88%96%EF%BC%88XOR%EF%BC%89/"/>
+      <url>/2020/01/10/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%BC%82%E6%88%96%EF%BC%88XOR%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="神经网络异或（XOR）"><a href="#神经网络异或（XOR）" class="headerlink" title="神经网络异或（XOR）"></a>神经网络异或（XOR）</h1><p><img src="https://dataiimg.oss-cn-hongkong.aliyuncs.com/神经网络.png" alt></p><p>这是典型的3层神经网络，Layer1层是输入层，Layer2层是隐含层，Layer3层是输出层。输入层还有两个神经元i1,i2和偏置项b1，输入层包含两个神经元i3,i4和偏置项b2，输出层只有一个神经元i5。b1,b2是偏置偏置单元（bias unit），在有些资料里也称为偏置项（bias term）或者截距项（intercept term），可以提高神经网络的精度，如果在写神经网络代码时把偏置项漏掉，神经网络很有可能变得很差，收敛很慢而且精度差，除非你有非常确定的理由去掉偏置项b。<br><br>神经元之间的连线是层与层之间的权重。</p><h2 id="Step-1-前向传播"><a href="#Step-1-前向传播" class="headerlink" title="Step 1 前向传播"></a>Step 1 前向传播</h2><h3 id="1、输入层-—-gt-隐含层"><a href="#1、输入层-—-gt-隐含层" class="headerlink" title="1、输入层 —&gt;隐含层"></a>1、输入层 —&gt;隐含层</h3><p><img src="https://dataiimg.oss-cn-hongkong.aliyuncs.com/前向传播1.png" alt></p><p><span style="color:red">方框里边是神经元的下标<br></span><br>计算隐含层神经元i3的输入加权和：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  net1 = b1 <em> w00 + i1 </em> w10 + i2 <em> w20<br><br>&emsp;  &emsp;  &emsp;  &emsp;  net2 = b1 </em> w01 + i1 <em> w11 + i2 </em> w21<br><br>计算神经元隐含层i3输出值（这里用的sigmoid函数）：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  i3 = sigmoid(net1)<br><br>计算神经元隐含层i4输出值：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  i4 = sigmoid(net2)<br></p><h3 id="2、隐含层-—-gt-输出层："><a href="#2、隐含层-—-gt-输出层：" class="headerlink" title="2、隐含层 —&gt; 输出层："></a>2、隐含层 —&gt; 输出层：</h3><p><img src="https://dataiimg.oss-cn-hongkong.aliyuncs.com/前向传播2.png" alt><br>计算输出层神经元i5的值：<br><br>&emsp;  &emsp;  &emsp;  &emsp; i5 = b2 <em> w02 + i3 </em> w12 + i4 * w22<br><br>计算输出层神经元i5输出值（同理通过sigmoid函数）：<br><br>&emsp;  &emsp;  &emsp;  &emsp; out = sigmoid(i5)</p><h2 id="Step-2-反向传播"><a href="#Step-2-反向传播" class="headerlink" title="Step 2 反向传播"></a>Step 2 反向传播</h2><h3 id="1、计算误差"><a href="#1、计算误差" class="headerlink" title="1、计算误差"></a>1、计算误差</h3><h4 id="对于输出层误差："><a href="#对于输出层误差：" class="headerlink" title="对于输出层误差："></a>对于输出层误差：</h4><p>方法一：<br><img src="https://dataiimg.oss-cn-hongkong.aliyuncs.com/误差.png" alt><br><br>方法二：<br><img src="https://dataiimg.oss-cn-hongkong.aliyuncs.com/输出层误差.png" alt><br><br><span style="color:red">这两个计算误差的方法本质是一样的</span><br><br>i5_err = out <em> (1 - out) </em> (d - out) <span style="color:red">d是预计值</span><br><br></p><h4 id="对于隐含层误差："><a href="#对于隐含层误差：" class="headerlink" title="对于隐含层误差："></a>对于隐含层误差：</h4><p><img src="https://dataiimg.oss-cn-hongkong.aliyuncs.com/隐含层误差.png" alt><br><br>隐含层i4神经元误差：i4_err = i4 <em> (1 - i4) </em> (w22 <em> i5_err)<br><br>隐含层i3神经元误差：i3_err = i3 </em> (1 - i3) <em> (w12 </em> i5_err)</p><h3 id="2、权值更新"><a href="#2、权值更新" class="headerlink" title="2、权值更新"></a>2、权值更新</h3><p><img src="https://dataiimg.oss-cn-hongkong.aliyuncs.com/权值更新.png" alt><br><br><span style="color:red">其中l表示学习速率，一般偏置项的值都为1</span><br><br>对于神经元b2-i5之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w02 = w02 + l <em> i5_err<br><br>对于神经元i3-i5之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w12 = w12 + l </em> i5_err<br><br>对于神经元i4-i5之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w22 = w22 + l <em> i5_err<br><br>对于神经元b1-i3之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w00 = w00 + l </em> i3_err<br><br>对于神经元b1-i4之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w01 = w01 + l <em> i4_err<br><br>对于神经元i1-i3之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w10 = w10 + l </em> i3_err<br><br>对于神经元i1-i4之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w11 = w11 + l <em> i4_err<br><br>对于神经元i2-i3之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w20 = w10 + l </em> i3_err<br><br>对于神经元i2-i4之间的权值更新：<br><br>&emsp;  &emsp;  &emsp;  &emsp;  w21 = w11 + l * i4_err<br></p><h3 id="3、偏向更新"><a href="#3、偏向更新" class="headerlink" title="3、偏向更新"></a>3、偏向更新</h3><p><img src="https://dataiimg.oss-cn-hongkong.aliyuncs.com/偏向更新.png" alt><br><br><span style="color:red">本文中用不到，只是提一下</span><br></p><h2 id="Step-3-终止条件"><a href="#Step-3-终止条件" class="headerlink" title="Step 3 终止条件"></a>Step 3 终止条件</h2><p>1、权值的更新低于某个阀值<br><br>2、预测的错误率低于某个阀值<br><br>3、达到预设的循环次数<br></p><h3 id="代码在github上"><a href="#代码在github上" class="headerlink" title="代码在github上"></a>代码在github上</h3><p><a href="https://github.com/DreamOfTheLate/xor" target="_blank" rel="noopener">代码链接</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 神经网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python基础学习笔记(一)</title>
       <link href="/2017/06/14/Python%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/"/>
       <url>/2017/06/14/Python%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/</url>
