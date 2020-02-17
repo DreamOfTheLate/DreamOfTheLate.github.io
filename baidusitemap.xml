@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://whoami.ink/2020/02/01/PyTorch%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2020-02-07</lastmod>
+  </url>  <url>
     <loc>http://whoami.ink/2020/01/10/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%BC%82%E6%88%96%EF%BC%88XOR%EF%BC%89/</loc>
     <lastmod>2020-01-09</lastmod>
   </url>  <url>

@@ -1,2 +1,3 @@
+http://whoami.ink/2020/02/01/PyTorch基础/
 http://whoami.ink/2020/01/10/神经网络异或（XOR）/
 http://whoami.ink/2017/06/14/Python基础学习笔记(一)/
